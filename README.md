@@ -46,3 +46,7 @@ git add .
 git commit -m "Initial commit"
 git remote add origin https://github.com/Czar22Ke/modern-Task-manager.git
 git push -u origin main
+
+git add .
+git commit -m "Update: [Filter now working, ID added for filtering done/todo]"
+git push origin main
