@@ -2,6 +2,7 @@
 import { ref, reactive, computed } from "vue";
 import Task from "./components/Task.vue";
 import Filter from "./components/Filter.vue";
+import ModalWindow from "./components/ModalWindow.vue";
 
 const appName = "Task manager";
 
@@ -56,6 +57,7 @@ let tasks = reactive([
 let newTask = { completed: false };
 
 let filterBy = ref("");
+let modalIsActive = ref(false);
 
 const filteredTasks = computed(() => {
   switch (filterBy.value) {
@@ -104,6 +106,11 @@ function setFilter(value) {
           {{ appName }}
         </h1>
       </div>
+      <div class="header-side">
+        <button @click="modalIsActive = true" class="btn secondary">
+          + Add Task
+        </button>
+      </div>
     </div>
 
     <Filter :filterBy="filterBy" @setFilter="setFilter" />
@@ -134,25 +141,8 @@ function setFilter(value) {
       <button class="btn gray" @click="addtask()">Add Task</button>
     </div>
   </main>
-  <div class="modal-wrapper" aria-modal="true" role="dialog" tabindex="-1">
-    <div class="inner">
-      <button class="close-btn">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="20"
-          height="20"
-          viewBox="0 0 256 256"
-        >
-          <path
-            fill="currentColor"
-            d="M208.49 191.51a12 12 0 0 1-17 17L128 145l-63.51 63.49a12 12 0 0 1-17-17L111 128L47.51 64.49a12 12 0 0 1 17-17L128 111l63.51-63.52a12 12 0 0 1 17 17L145 128Z"
-          />
-        </svg>
-      </button>
 
-      <div class="form">Your popup content goes here</div>
-    </div>
-  </div>
+  <ModalWindow @closePopUp="modalIsActive = false" v-if="modalIsActive" />
 </template>
 
 <style lang="scss" scoped>
@@ -204,81 +194,6 @@ function setFilter(value) {
   button {
     width: 360px;
     margin-top: 12px;
-  }
-}
-.modal-wrapper {
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: 500;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.2);
-  display: grid;
-  place-items: center;
-  color: var(--black-color);
-
-  .inner {
-    background-color: white;
-    padding: 30px;
-    border-radius: 12px;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    max-width: 600px;
-    width: 90%;
-
-    h3 {
-      font-size: 16px;
-      font-weight: 700;
-      line-height: 21px;
-      margin-bottom: 20px;
-    }
-
-    .close-btn {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      cursor: pointer;
-      background-color: var(--white-color);
-    }
-
-    .form {
-      display: flex;
-      flex-direction: column;
-      max-width: 100%;
-
-      label {
-        font-size: 12px;
-        font-weight: 500;
-        line-height: 16px;
-        letter-spacing: 0em;
-        text-align: left;
-      }
-
-      input,
-      select,
-      textarea {
-        font-size: 12px;
-        font-weight: 400;
-        line-height: 16px;
-        letter-spacing: 0em;
-        text-align: left;
-        border: 1px solid #c2c2c2;
-        border-radius: 4px;
-        padding: 8px 12px;
-        margin-top: 5px;
-
-        &::placeholder {
-          color: #a6a6a6;
-        }
-      }
-
-      .btn {
-        width: fit-content;
-        padding-inline: 23px;
-      }
-    }
   }
 }
 </style>
