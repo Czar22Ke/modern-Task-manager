@@ -32,15 +32,6 @@ cd sample-vite-project
 npm install
 npm run dev
 
-https://github.com/Czar22Ke/modern-Task-manager.git
-
-git init
-git add .
-git commit -m "Initial commit"
-git branch -M main
-git remote add origin https://github.com/Czar22Ke/modern-Task-manager.git
-git push -u origin main
-
 git init
 git add .
 git commit -m "Initial commit"
@@ -50,3 +41,4 @@ git push -u origin main
 git add .
 git commit -m "Update: [Filter now working, ID added for filtering done/todo]"
 git push origin main
+git status
