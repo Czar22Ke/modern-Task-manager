@@ -2,7 +2,8 @@
 import { ref, reactive, computed } from "vue";
 import Task from "./components/Task.vue";
 import Filter from "./components/Filter.vue";
-import ModalWindow from "./components/ModalWindow.vue";
+import ModalWindow from "./components/Modals/ModalWindow.vue";
+import AddTaskModal from "./components/Modals/AddTaskModal.vue";
 
 const appName = "Task manager";
 
@@ -124,25 +125,10 @@ function setFilter(value) {
       />
     </div>
 
-    <div class="add-task">
-      <h3>Add a new task</h3>
-      <input
-        type="text"
-        name="title"
-        placeholder="Enter a title..."
-        v-model="newTask.name"
-      /><br />
-      <textarea
-        name="description"
-        rows="4"
-        v-model="newTask.description"
-        placeholder="Enter a description..."
-      /><br />
-      <button class="btn gray" @click="addtask()">Add Task</button>
-    </div>
+    <ModalWindow @closePopUp="modalIsActive = false" v-if="modalIsActive">
+      <AddTaskModal />
+    </ModalWindow>
   </main>
-
-  <ModalWindow @closePopUp="modalIsActive = false" v-if="modalIsActive" />
 </template>
 
 <style lang="scss" scoped>

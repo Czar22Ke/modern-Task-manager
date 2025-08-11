@@ -5,11 +5,11 @@ import ModalClose from "./ModalClose.vue";
   <div class="modal-wrapper" aria-modal="true" role="dialog" tabindex="-1">
     <div class="inner">
       <ModalClose @click="$emit('closePopUp')" />
-      <div class="form">Your popup content goes here</div>
+      <slot></slot>
     </div>
   </div>
 </template>
-<style lang="scss" scoped>
+<style lang="scss">
 .modal-wrapper {
   position: fixed;
   left: 0;
@@ -59,7 +59,7 @@ import ModalClose from "./ModalClose.vue";
         line-height: 16px;
         letter-spacing: 0em;
         text-align: left;
-        border: 1px solid #c2c2c2;
+        border: 1px solid #1d0606;
         border-radius: 4px;
         padding: 8px 12px;
         margin-top: 5px;
