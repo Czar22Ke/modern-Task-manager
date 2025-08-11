@@ -13,6 +13,6 @@
       placeholder="Enter a description..."
     /><br />
 
-    <button class="btn gray" @click="addtask()">Add Task</button>
+    <button class="btn gray" @click="addTask()">Add Task</button>
   </div>
 </template>
