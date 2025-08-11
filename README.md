@@ -39,6 +39,6 @@ git remote add origin https://github.com/Czar22Ke/modern-Task-manager.git
 git push -u origin main
 
 git add .
-git commit -m "Update: [Filter now working, ID added for filtering done/todo]"
+git commit -m "Update: [Using pinia store over vuex]"
 git push origin main
 git status
