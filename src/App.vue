@@ -1,5 +1,4 @@
 <script setup>
-import { ref, reactive } from "vue";
 import Task from "./components/Task.vue";
 import Filter from "./components/Filter.vue";
 import ModalWindow from "./components/Modals/ModalWindow.vue";
@@ -9,8 +8,6 @@ import { useTasksStore } from "./stores/taskesStore";
 const store = useTasksStore();
 
 const appName = "Task manager";
-
-let modalIsActive = ref(false);
 </script>
 
 <template>
@@ -22,7 +19,7 @@ let modalIsActive = ref(false);
         </h1>
       </div>
       <div class="header-side">
-        <button @click="modalIsActive = true" class="btn secondary">
+        <button @click="store.openModal" class="btn secondary">
           + Add Task
         </button>
       </div>
@@ -34,7 +31,7 @@ let modalIsActive = ref(false);
       <Task v-for="task in store.filteredTasks" :task="task" :key="task.id" />
     </div>
 
-    <ModalWindow @closePopUp="modalIsActive = false" v-if="modalIsActive">
+    <ModalWindow v-if="store.modalIsActive">
       <AddTaskModal />
     </ModalWindow>
   </main>

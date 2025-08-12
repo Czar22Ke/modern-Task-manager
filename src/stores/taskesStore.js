@@ -52,6 +52,8 @@ export const useTasksStore = defineStore("tasks", () => {
 
   let filterBy = ref("");
 
+  let modalIsActive = ref(false);
+
   function setFilter(value) {
     filterBy.value = value;
   }
@@ -87,5 +89,24 @@ export const useTasksStore = defineStore("tasks", () => {
     console.log("clicked", id);
   }
 
-  return { tasks, filterBy, setFilter, filteredTasks, addTask, toggleEvent };
+  function openModal() {
+    modalIsActive.value = true;
+    console.log(modalIsActive.value);
+  }
+  function closeModal() {
+    modalIsActive.value = false;
+    console.log(modalIsActive.value);
+  }
+
+  return {
+    tasks,
+    filterBy,
+    setFilter,
+    filteredTasks,
+    addTask,
+    toggleEvent,
+    modalIsActive,
+    openModal,
+    closeModal,
+  };
 });
