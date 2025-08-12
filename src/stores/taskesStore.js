@@ -67,11 +67,10 @@ export const useTasksStore = defineStore("tasks", () => {
     }
   });
 
-  function addTask() {
+  function addTask(newTask) {
     if (newTask.name && newTask.description) {
-      newTask.id = Math.max(...store.tasks.map((task) => task.id)) + 1;
-      store.tasks.push(newTask);
-      newTask = { completed: false };
+      newTask.id = Math.max(...tasks.map((task) => task.id)) + 1;
+      tasks.push(newTask);
 
       console.log(newTask);
     } else {

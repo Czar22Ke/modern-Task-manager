@@ -10,8 +10,6 @@ const store = useTasksStore();
 
 const appName = "Task manager";
 
-let newTask = { completed: false };
-
 let modalIsActive = ref(false);
 </script>
 
