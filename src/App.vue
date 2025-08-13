@@ -4,10 +4,12 @@ import Filter from "./components/Filter.vue";
 import ModalWindow from "./components/Modals/ModalWindow.vue";
 import AddTaskModal from "./components/Modals/AddTaskModal.vue";
 import { useTasksStore } from "./stores/taskesStore";
-
+const appName = "Task manager";
 const store = useTasksStore();
 
-const appName = "Task manager";
+store.$subscribe((mutation, state) => {
+  localStorage.setItem("tasks", JSON.stringify(state.tasks));
+});
 </script>
 
 <template>
