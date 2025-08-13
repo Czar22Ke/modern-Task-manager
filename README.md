@@ -39,6 +39,6 @@ git remote add origin https://github.com/Czar22Ke/modern-Task-manager.git
 git push -u origin main
 
 git add .
-git commit -m "Update: [Final Update]"
+git commit -m "Update: [Completed]"
 git push origin main
 git status

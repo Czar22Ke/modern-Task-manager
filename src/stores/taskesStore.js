@@ -2,7 +2,10 @@ import { defineStore } from "pinia";
 import { reactive, ref, computed } from "vue";
 
 export const useTasksStore = defineStore("tasks", () => {
-  let tasks = reactive([]);
+  // const saved = localStorage.getItem("tasks");
+  // let tasks = reactive(saved ? JSON.parse(saved) : []);
+
+  let tasks = reactive(JSON.parse(localStorage.getItem("tasks")) || []);
 
   let filterBy = ref("");
 
@@ -25,7 +28,9 @@ export const useTasksStore = defineStore("tasks", () => {
 
   function addTask(newTask) {
     if (newTask.name && newTask.description) {
-      newTask.id = Math.max(...tasks.map((task) => task.id)) + 1;
+      newTask.id = tasks.length
+        ? Math.max(...tasks.map((task) => task.id)) + 1
+        : 1;
       tasks.push(newTask);
 
       console.log(newTask);
